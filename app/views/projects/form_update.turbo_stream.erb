@@ -1,0 +1,4 @@
+<%= turbo_stream.update "remote_modal_body" do %>
+    <%= render 'shared/errors', obj: @project %>
+    <%= render "form", project: @project %>
+  <% end %>

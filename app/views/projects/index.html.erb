@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="card-title mb-0">Projects</h2>
+      <% if current_user %>
+      <h2><p>Hello <%= current_user.username %></p></h2>
+      <h3><p><b>You are a <%= current_user.role %> </b></p></h3>
+        <% if current_user.Manager? %>
+          <div>
+            <%= link_to 'New Project', new_project_path, data: { turbo_frame: "remote_modal" }, class: 'btn btn-primary mr-2' %>
+            <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-secondary' %>
+          </div>
+        <% else %>
+          
+          <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-secondary' %>
+        <% end %>
+      <% else %>
+        <p>Please sign in to access the Projects dashboard.</p>
+        <%= link_to "User Login", new_user_session_path, class: 'btn btn-primary mr-2' %>
+        <%= link_to "Admin Login", "/admin", class: 'btn btn-secondary' %>
+      <% end %>
+    </div>
+    <% @projects.each do |project| %>
+      <%= link_to project, class: 'text-decoration-none' do %>
+        <div class="card project-card mb-3">
+          <div class="card-body">
+            <div class="mb-3">
+              <span class="badge badge-<%= project.badge_color %>">
+                <%= project.status %>
+              </span>
+              <span class='text-secondary'>
+                <small>
+                  <%= project.percent_complete %>% complete
+                  (<%= project.total_complete %>/<%= project.total_tasks %> tasks)
+                </small>
+              </span>
+            </div>
+            <h5 class='card-title text-dark'><b><%= project.name %></b></h5>
+            <p class='text-secondary'><%= project.description %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

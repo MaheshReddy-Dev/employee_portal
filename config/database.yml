@@ -1,0 +1,26 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  username: <%= Rails.application.credentials.database[:username] %>
+  password: <%= Rails.application.credentials.database[:password] %>
+  host: localhost
+  database: employee_portal_development
+
+test:
+  <<: *default
+  username: <%= Rails.application.credentials.database[:username] %>
+  password: <%= Rails.application.credentials.database[:password] %>
+  host: localhost
+  database: employee_portal_test
+
+
+production:
+  <<: *default
+  database: employee_portal_production
+  username: employee_portal
+  password: <%= ENV["EMPLOYEE_PORTAL_DATABASE_PASSWORD"] %>

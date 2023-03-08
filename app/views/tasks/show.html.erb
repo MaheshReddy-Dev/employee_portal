@@ -1,0 +1,25 @@
+
+<%= render "shared/remote_modal", title: "Task Details" do %>
+<p>
+  <b>Name:</b>
+  <%= @task.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @task.description %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @task.status %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @task.project.name %>
+</p>
+
+
+<%= link_to 'Back', project_path(@project) %>
+<% end %>

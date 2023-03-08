@@ -1,0 +1,13 @@
+
+<%= render "shared/remote_modal", title: "New Project" do %>
+
+
+<%= render "form", project: @project %>
+<%= render 'shared/errors', obj: @project %>
+
+<br>
+
+<div>
+  <%= link_to "Back to projects", projects_path %>
+</div>
+<% end %>
