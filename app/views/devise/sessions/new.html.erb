@@ -1,30 +1,30 @@
-<h2>Log in</h2>
+<h2>Log in</h2><br/>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+  <div class="form-floating mb-3">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput", placeholder: "name@example.com" %>
+    <label for="floatingInput">Email address</label><br/>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="form-floating">
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "floatingPassword", placeholder: "Password" %>
+    <label for="floatingPassword">Password</label><br/>
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="form-check">
+      <%= f.check_box :remember_me, class: "form-check-input" %>
+      <%= f.label :remember_me, class: "form-check-label" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" ,data: {turbo: false} %>
+  <div class="mt-3">
+    <%= f.submit "Log in", class: "btn btn-primary", data: {turbo: false} %>
   </div>
 
-<div class="actions">
-<%= link_to "For Admin Login", "/admin", class: 'btn btn-secondary' %>
-</div>
+  <div class="mt-3">
+   <%= link_to "For Admin Login", "/admin" %>
+  </div>
 
 <% end %>
-
