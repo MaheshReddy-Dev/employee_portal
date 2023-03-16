@@ -4,6 +4,4 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :projects, dependent: :destroy
-  validates :role, presence: true
-  enum role: [:Manager, :Technician, :Developer, :SupportRole]
 end
